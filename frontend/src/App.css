@@ -1,0 +1,457 @@
+/* App.css - Premium "Spur" Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  /* The "Spur" Royal Blue */
+  --primary-dark: #1d4ed8;
+  --bg-color: #f1f5f9;
+  /* Light gray background for the whole page */
+  --chat-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --user-bubble: #ffffff;
+  --ai-bubble: #2563eb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 500px;
+  min-width: 500px;
+
+  background: var(--chat-bg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* --- HEADER --- */
+.chat-header {
+  padding: 1rem 1.5rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  height: 28px;
+  width: auto;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.header-actions button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.header-actions button:hover {
+  background: #f1f5f9;
+  color: var(--primary);
+}
+
+/* --- MESSAGES --- */
+.messages-list {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* More space between message blocks */
+}
+
+.message-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.message-wrapper.user {
+  flex-direction: row-reverse;
+}
+
+/* Avatars */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.avatar.ai {
+  background-color: white;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.avatar.user {
+  background-image: url('https://i.pravatar.cc/150?img=32');
+  /* Generic user avatar */
+}
+
+/* Bubbles */
+.message-content {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* USER STYLE: Simple White Bubble */
+.message-wrapper.user .message-bubble {
+  background: white;
+  color: #1e293b;
+  /* Dark Slate Text */
+  padding: 0.8rem 1.2rem;
+  /* Slightly more padding for elegance */
+  border-radius: 16px;
+  border-top-right-radius: 4px;
+  /* Subtle sharp corner */
+
+  /* The Aesthetic "Pop" - Soft dual-layer shadow */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    /* Tiny hard shadow */
+    0 8px 16px rgba(0, 0, 0, 0.04);
+  /* Soft spread shadow */
+
+  /* Subtle border to define edges clearly */
+  border: 1px solid rgba(226, 232, 240, 0.8);
+
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+/* Optional: Slight hover effect for interactivity */
+.message-wrapper.user .message-bubble:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.02),
+    0 12px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* AI STYLE: The "Card" Look */
+.message-wrapper.ai .message-card {
+  background: white;
+  border-radius: 12px;
+  border-bottom-left-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.ai-card-header {
+  padding: 0.6rem 1rem;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ai-icon {
+  color: var(--primary);
+}
+
+.ai-card-body {
+  background: var(--primary);
+  /* The Spur Blue Background */
+  color: white;
+  padding: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Input Area */
+.input-area {
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Find this part in App.css and replace it */
+input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  /* Force white background */
+  color: #1e293b;
+  /* Force dark text color (Critical Fix) */
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+input::placeholder {
+  color: #94a3b8;
+  /* Make sure placeholder is visible too */
+}
+
+input:focus {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  color: #1e293b;
+  /* Ensure text stays dark when focused */
+}
+
+.send-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+.send-btn:disabled {
+  background: #cbd5e1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing Indicator */
+.typing {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Find this section in frontend/src/App.css */
+.send-btn:disabled {
+  background: #cbd5e1;
+  /* Light Gray */
+  cursor: not-allowed;
+  /* Shows a "stop" sign on hover */
+  opacity: 0.7;
+}
+
+.typing-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 4px;
+  /* Adjust padding to fit bubble */
+}
+
+.typing-dots span {
+  width: 8px;
+  height: 8px;
+  background-color: #64748b;
+  /* Slate color */
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+.messages-list {
+  /* Firefox Support */
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+/* 2. WebKit Browsers (Chrome, Edge, Safari) */
+.messages-list::-webkit-scrollbar {
+  width: 6px;
+  /* Very thin and sleek */
+}
+
+.messages-list::-webkit-scrollbar-track {
+  background: transparent;
+  /* Invisible track */
+  margin: 4px 0;
+  /* Tiny spacing from top/bottom */
+}
+
+.messages-list::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  /* Subtle Grey by default */
+  border-radius: 20px;
+  /* Pill shape */
+  border: 2px solid transparent;
+  /* Creates padding effect */
+  background-clip: content-box;
+}
+
+/* 3. Hover Effect - Turns Spur Blue */
+.messages-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary);
+  /* #2563eb */
+}
+
+/* --- EMPTY STATE & QUICK QUESTIONS --- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.empty-state-content {
+  max-width: 500px;
+  width: 100%;
+}
+
+.empty-logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 16px;
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: #64748b;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.quick-questions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 2 columns */
+  gap: 12px;
+}
+
+.quick-question-btn {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.quick-question-btn:hover {
+  background: #f0f9ff;
+  border-color: #3b82f6;
+  color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+}
+
+/* Session Footer Styling */
+.session-footer {
+  padding: 12px;
+  font-size: 0.85rem;
+  color: #475569;
+  text-align: center;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-family: monospace;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

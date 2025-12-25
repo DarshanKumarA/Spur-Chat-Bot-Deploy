@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Conversation {
+  id        String    @id @default(uuid()) // Unique Session ID [cite: 44]
+  createdAt DateTime  @default(now())      // 
+  messages  Message[] // Relation to messages [cite: 47]
+  metadata  String?   // Optional metadata 
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  conversationId String       // Foreign key to Conversation 
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  sender         String       // "user" | "ai" 
+  text           String       // The actual message content 
+  createdAt      DateTime     @default(now()) // Timestamp 
+}
