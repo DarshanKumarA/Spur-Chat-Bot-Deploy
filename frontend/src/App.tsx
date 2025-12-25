@@ -45,7 +45,7 @@ function App() {
 
   const fetchHistory = async (id: string) => {
     try {
-      const response = await axios.get(`http://localhost:3000/chat/history/${id}`);
+      const response = await axios.get(`https://spur-chat-bot-deploy.onrender.com/chat/history/${id}`);
       const history = response.data.messages.map((msg: any) => ({
         id: msg.id.toString(),
         sender: msg.sender,
@@ -89,7 +89,7 @@ function App() {
 
       console.log("Sending Message with SessionID:", sessionId);
 
-      const response = await axios.post('http://localhost:3000/chat/message', {
+      const response = await axios.post('https://spur-chat-bot-deploy.onrender.com/chat/message', {
         message: textToSend,
         sessionId: sessionId
       });
